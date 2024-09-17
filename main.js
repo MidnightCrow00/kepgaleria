@@ -1,58 +1,32 @@
 import { KEPEK } from "./adatok.js";
-import Kartya from "./Kartya.js";
+import Jatekter from "./Jatekter.js";
+
+import NagyKartya from "./NagyKartya.js";
 
 const taroloElem = $(".galeria");
-const kivElem=$(".kivalasztott")
-new Kartya(KEPEK, taroloElem);
+const kivELEM = $(".kivalasztott");
+let index = 0;
 
-const kivalasztottKepeklista=[]
+new NagyKartya(KEPEK[index],kivELEM)
+new Jatekter(KEPEK, taroloElem);
 
-$(window).on("kiválaszt",()=>{
+$(window).on("kivalaszt",(event)=>{
     console.log(event.detail)
-    KEPEK.push(event.detail)
-    console.log(kivalasztottKepeklista)
-    new Kartya(kivalasztottKepeklista,kivElem)
-})
-
-
-const galeriaElem = document.getElementsByClassName("galeria")[0];
-const nagykepImg = document.querySelector(".nagykep img");
-const nagykepElem = document.querySelector(".nagykep");
-const kiskepElemek = document.querySelectorAll(".kep");
-
-for (let index = 0; index < kiskepElemek.length; index++) {
-    kiskepElemek[index].addEventListener("click", katt)
-    
-}
-
-function katt(event){
-    nagykepImg.src = event.target.src
-}
-let aktIndex =  0;
-
-const jobbgombElem = document.querySelectorAll(".jobb")
-for (let index = 0; index < jobbgombElem.length; index++) {
-    jobbgombElem[index].addEventListener("click", function() {
-        if (aktIndex < KEPEK.length - 1) {
-            aktIndex++;
-        } else {
-            aktIndex = 0;
-        }
-        nagykepImg.src = KEPEK[aktIndex].kep;
-    });
-}
-
-const balgombElem = document.querySelectorAll(".bal")
-for (let index = 0; index < balgombElem.length; index++) {
-    balgombElem[index].addEventListener("click", function() {
-        if (aktIndex > 0) {
-            aktIndex--;
-        } else {
-            aktIndex = KEPEK.length - 1; 
-        }
-        nagykepImg.src = KEPEK[aktIndex].kep;
-    });
-}
-
-
-
+    //
+    kivELEM.empty()
+    index=event.detail.id
+    new NagyKartya(event.detail,kivELEM)
+ })
+ 
+ $(window).on("jobb",(event)=>{  
+     index++;
+     if (index===KEPEK.length) {index=0}
+     kivELEM.empty()
+     new NagyKartya(KEPEK[index],kivELEM)
+  })
+  $(window).on("bal",(event)=>{  
+     index--;
+     if (index<0) {index=KEPEK.length-1}
+     kivELEM.empty()
+     new NagyKartya(KEPEK[index],kivELEM)
+  })

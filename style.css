@@ -1,21 +1,13 @@
-
-.galeria img {
-  width: 100%;
-}
-.nagykep {
-    border: 1px solid gray; 
-    border-radius: 10px;
-    padding: 10px;
-
-    background-color: rgb(168, 143, 110);
-    top: 10%;
-    bottom: 10%;
-    left: 10%;
-    right: 10%;
+footer{
+  text-align: center;
+  border: 1px solid gray; 
+  border-radius: 10px;
+  background-color: antiquewhite;
 }
 
-.nagykep img {
-    width: 50%;
-    max-width: 60%;
+header{
+  margin-left: 10px;
 }
-
+main{
+  margin: 5%;
+}
